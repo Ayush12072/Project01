@@ -68,13 +68,16 @@ public class BallController : MonoBehaviour {
     {
         if(col.gameObject.tag == "Diamond")
         {
-            extrapunch.SetActive(true);
-            extrapunch.GetComponent<Animator>().Play("extraPunch");
+            PlayExtraPunch();
             GameObject part = Instantiate(particle, col.gameObject.transform.position, Quaternion.identity) as GameObject;
             ScoreManager.instance.score += 5;
             Destroy(col.gameObject);
             Destroy(part, 1f);
         }
+    }
+    void PlayExtraPunch()
+    {
+        GameObject punch = (GameObject)Instantiate(extrapunch, transform.position, Quaternion.AngleAxis(45,Vector3.up),transform) as GameObject;
     }
 
 }
